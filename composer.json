@@ -1,0 +1,23 @@
+{
+    "name": "aii/admin",
+    "description": "common admin panel",
+    "type": "project",
+    "authors": [
+        {
+            "name": "vidhi vasaiya",
+            "email": "vidhivasaiya.aii@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+
+    "autoload": {
+        "classmap": [
+            "database"
+        ],
+        "psr-4": {
+            "App\\": "app/",
+            "Aii\\Admin\\": "package/aii/admin/src/"
+        }
+    }
+}
