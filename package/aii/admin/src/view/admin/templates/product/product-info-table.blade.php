@@ -71,7 +71,7 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title">Product Image</h4>
                         </div>
-                        <div class="panel-body" id="image-Details">
+                        <div class="panel-body" id="image_Detail">
                         </div>
                     </div>
                 </div>

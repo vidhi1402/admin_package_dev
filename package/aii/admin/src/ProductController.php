@@ -91,7 +91,6 @@ class ProductController extends Controller
             $oProductCategory['fk_id_product'] = $aProductID;
             $oProductCategory['fk_id_product_category'] = $oRequest->fk_id_product_category[$i];
             $oProductCategory->save();
-            dd($oProductCategory);
         }
     }
 
