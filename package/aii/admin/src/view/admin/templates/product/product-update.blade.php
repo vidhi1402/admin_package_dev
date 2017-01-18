@@ -9,8 +9,8 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="sr-input" for="exampleInputPassword2">Product Name:</label>
-                    <input class="form-control has-feedback-left" id="product_name" placeholder="Product Name"
-                           name="product_name" value="{{ $id->name }}"
+                    <input class="form-control has-feedback-left" id="name" placeholder="Product Name"
+                           name="name" value="{{ $id->name }}"
                            type="text">
                 </div>
             </div>
@@ -73,7 +73,7 @@
                 <div class="form-group">
                     <label class="sr-input" for="exampleInputPassword2">Category:</label> <br>
                     <select multiple="multiple" class="multi-select" id="fk_id_product_category" name="fk_id_product_category[]">
-                        @foreach( $aProductCategoryList as $oCategory )
+                        @foreach( $aProductCategory as $oCategory )
                             @if( in_array($oCategory->id_product_category ,(array)($aCategory)))
                                 <option   value="{{ $oCategory->id_product_category }}" {{ "selected"}} >
                                     {{ $oCategory->name }}</option>
@@ -88,7 +88,7 @@
                 <div class="form-group">
                     <label class="sr-input" for="exampleInputPassword2">Sub Category:</label> <br>
                     <select multiple="multiple" class="multi-select" id="fk_id_sub_product_category" name="fk_id_sub_product_category[]">
-                        @foreach( $aProductSubCategoryList as $oSubCategory )
+                        @foreach( $aProductSubCategory as $oSubCategory )
                             @if( in_array($oSubCategory->id_product_sub_category ,(array)($aSubCategory)))
                                 <option  value="{{ $oSubCategory->id_product_sub_category }}" {{ "selected" }} >
                                     {{ $oSubCategory->name }}</option>

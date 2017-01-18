@@ -2,8 +2,8 @@
 
 namespace Aii\Admin;
 
-use Aii\Admin\Models\Product;
 use App\Http\Controllers\Controller;
+use Aii\Admin\Models\Product;
 use Aii\Admin\Models\ProductAssignCategory;
 use Aii\Admin\Models\ProductAssignSubCategory;
 use Aii\Admin\Models\ProductCategory;
@@ -16,9 +16,9 @@ class ProductController extends Controller
 {
     public function Index()
     {
-        $aProductList = Product::with('category.productCategory')->with('subCategory.productSubCategory')->get();
-        $aCategoryList = ProductCategory::with('productSubCategory')->where('status', 1)->get();
-        return view('admin::templates.product.product', compact('aCategoryList', 'aProductList'));
+        $aProduct = Product::with('category.productCategory')->with('subCategory.productSubCategory')->get();
+        $aCategory = ProductCategory::with('productSubCategory')->where('status', 1)->get();
+        return view('admin::templates.product.product', compact('aCategory', 'aProduct'));
     }
 
     /*START::Get sub category product*/
@@ -38,8 +38,8 @@ class ProductController extends Controller
     public function Insert(Request $oRequest)
     {
         $aRules = array(
-            'name' => 'required|unique:aii_products_master',
-            'slug' => 'required|unique:aii_products_master',
+            'name' => 'required|unique:aii_product_master',
+            'slug' => 'required|unique:aii_product_master',
             'sort_description' => 'required',
             'fk_id_product_category' => 'required',
            // 'fk_id_sub_product_category' => 'required',
@@ -111,24 +111,24 @@ class ProductController extends Controller
     /*Start:: Get product Edit*/
     public function GetProduct(Product $id)
     {
-        $aProductCategoryList = ProductCategory::all();
-        $aProductSubCategoryList = ProductSubCategory::all();
-        $aProductCategory = ProductAssignCategory::where('fk_id_product', $id->id_product)->get();
-        $aProductSubCategory = ProductAssignSubCategory::where('fk_id_product', $id->id_product)->get();
+        $aProductCategory = ProductCategory::all();
+        $aProductSubCategory = ProductSubCategory::all();
+        $aProCategory = ProductAssignCategory::where('fk_id_product', $id->id_product)->get();
+        $aProSubCategory = ProductAssignSubCategory::where('fk_id_product', $id->id_product)->get();
 
         $aCategory = array();
-        foreach ($aProductCategory as $oCategory) {
+        foreach ($aProCategory as $oCategory) {
             $aCategory[] = $oCategory->fk_id_product_category;
         };
 
         $aSubCategory = array();
-        foreach ($aProductSubCategory as $oSubCatagory) {
+        foreach ($aProSubCategory as $oSubCatagory) {
             $aSubCategory[] = $oSubCatagory->fk_id_sub_category;
         };
 
-        $aProductList = Product::with('category.productCategory')->with('subCategory.productSubCategory')->get();
-        return view('admin::templates.product.product', compact('id', 'aProductList', 'aProductCategoryList',
-            'aCategory', 'aSubCategory', 'aProductSubCategoryList'));
+        $aProduct = Product::with('category.productCategory')->with('subCategory.productSubCategory')->get();
+        return view('admin::templates.product.product', compact('id', 'aProduct', 'aProductCategory',
+            'aCategory', 'aSubCategory', 'aProductSubCategory'));
     }
     /*End:: Get product Edit*/
 
@@ -136,16 +136,15 @@ class ProductController extends Controller
     public function Update(Request $oRequest)
     {
         $aRules = array(
-            'product_name' => 'required',
+            'name' => 'required',
             'slug' => 'required',
             'sort_description' => 'required',
             'fk_id_product_category' => 'required',
-           // 'fk_id_sub_product_category' => 'required',
         );
         $oValid = Validator::make($oRequest->all(), $aRules);
         if ($oValid->passes()) {
             $oResponse = Product::where('id_product', $oRequest->selected_id)->update([
-                'name' => $oRequest->product_name,
+                'name' => $oRequest->name,
                 'slug' => $oRequest->slug,
                 'sort_description' => $oRequest->sort_description,
                 'brief_description' => $oRequest->brief_description,
@@ -200,7 +199,7 @@ class ProductController extends Controller
         $oResponse = ProductAssignSubCategory::whereNotIn('fk_id_sub_category', $oRequest->fk_id_sub_product_category)
             ->where('fk_id_product', $aProductID)
             ->delete();
-        for ($i = 0; $i <count($oRequest->fk_id_sub_product_category); $i++) {
+        for ($i = 0; $i < count($oRequest->fk_id_sub_product_category); $i++) {
             $aProductSubCategory = ProductSubCategory::where('id_product_Sub_category', $oRequest->fk_id_sub_product_category[$i])->first();
             $oProductSubCategory = ProductAssignSubCategory::firstOrCreate([
                 'fk_id_product' => $aProductID,
@@ -259,7 +258,6 @@ class ProductController extends Controller
         foreach ($aProductImg As $oImage) {
             $result = $this->__deleteImageFolder(public_path() . config('constants.PRODUCT_IMAGE_PATH') . $oImage->name);
         }
-
         $oResDel = ProductImage::where('fk_id_product', $nProductId)->delete();
     }
     /*End:: Delete product*/
@@ -268,10 +266,10 @@ class ProductController extends Controller
     /*START::Get Image product*/
     public function GetProductImage(Request $oRequest)
     {
-        $aProduct = ProductImage::where('fk_id_product', $oRequest->id)->get();
-        $html = view('admin::templates.product.product-modal-data', compact('aProduct'))->render();
+        $aProductImage = ProductImage::where('fk_id_product', $oRequest->id)->get();
+        $html = view('admin::templates.product.product-modal-data', compact('aProductImage'))->render();
         if ($html) {
-            return response()->json(['status' => 1, 'html' => $html, 'data' => $aProduct, 'req_data' => $oRequest->all()]);
+            return response()->json(['status' => 1, 'html' => $html, 'data' => $aProductImage, 'req_data' => $oRequest->all()]);
         } else {
             return response()->json(['status' => 0]);
         }
@@ -283,9 +281,9 @@ class ProductController extends Controller
             'status' => $oRequest->status,
         ]);
         $oImage = ProductImage::find($oRequest->id);
-        $aProduct = ProductImage::where('fk_id_product', $oImage->fk_id_product)->get();
+        $aProductImage = ProductImage::where('fk_id_product', $oImage->fk_id_product)->get();
 
-        $html = view('admin::templates.product.product-modal-data', compact('aProduct'))->render();
+        $html = view('admin::templates.product.product-modal-data', compact('aProductImage'))->render();
         if ($oResponse) {
             session()->flash('msg', 'Status Changed');
             return response()->json(array('data' => $oResponse, 'id_product' => $oImage->fk_id_product, 'status' => 1, 'html' => $html));
@@ -300,8 +298,8 @@ class ProductController extends Controller
     public function DeleteProductImage(Request $oRequest)
     {
         $oImage = ProductImage::find($oRequest->id);
-        $aProduct = ProductImage::where('fk_id_product', $oImage->fk_id_product)->get();
-        $html = view('admin::templates.product.product-modal-data', compact('aProduct'))->render();
+        $aProductImage = ProductImage::where('fk_id_product', $oImage->fk_id_product)->get();
+        $html = view('admin::templates.product.product-modal-data', compact('aProductImage'))->render();
         $result = $this->__deleteImageFolder(public_path() . config('constants.PRODUCT_IMAGE_PATH') . $oImage->name);
 
         if ($result['status'] == 1) {

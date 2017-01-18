@@ -11,16 +11,16 @@ class ServiceCategoryController extends Controller
 {
     public function Index(){
 
-        $aServiceCategoryList = ServiceCategory::all();
-        return view('admin::templates.service_category.service-category',compact('aServiceCategoryList'));
+        $aServiceCategory = ServiceCategory::all();
+        return view('admin::templates.service_category.service-category',compact('aServiceCategory'));
     }
 
     /*Start::service category insert*/
     public function Insert(Request $oRequest)
     {
         $aRules = array(
-            'name' => 'required|unique:aii_service_categories_master',
-            'slug' => 'required|unique:aii_service_categories_master',
+            'name' => 'required|unique:aii_service_category_master',
+            'slug' => 'required|unique:aii_service_category_master',
 
         );
 
@@ -48,8 +48,8 @@ class ServiceCategoryController extends Controller
     /*Start:: Get service category Edit*/
     public function GetServiceCategory(ServiceCategory $id)
     {
-        $aServiceCategoryList = ServiceCategory::all();
-        return view('admin::templates.service_category.service-category', compact('id', 'aServiceCategoryList'));
+        $aServiceCategory = ServiceCategory::all();
+        return view('admin::templates.service_category.service-category', compact('id', 'aServiceCategory'));
     }
     /*End:: Get service category Edit*/
 

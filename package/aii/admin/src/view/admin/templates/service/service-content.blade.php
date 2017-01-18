@@ -54,7 +54,7 @@
                 <div class="form-group">
                     <label class="sr-input" for="exampleInputPassword2">Category:</label> <br>
                     <select multiple="multiple" class="multi-select"  id="fk_id_service_category" name="fk_id_service_category[]">
-                        @foreach( $aCategoryList as $oCategory)
+                        @foreach( $aCategory as $oCategory)
                                     <option  onclick="getSubCategory('{{$oCategory->id_service_category}}')" value="{{ $oCategory->id_service_category }}">
                                         {{ $oCategory->name }}
                                     </option>

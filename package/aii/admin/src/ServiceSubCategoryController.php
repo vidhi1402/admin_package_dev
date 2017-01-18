@@ -12,10 +12,10 @@ class ServiceSubCategoryController extends Controller
 {
     public function Index(){
 
-        $aServiceCategoryList = ServiceCategory::all();
-        $aServiceSubCategoryList = ServiceSubCategory::with('serviceCategory')->get();
-        return view('admin::templates.service_sub_category.service-sub-category',compact('aServiceCategoryList',
-            'aServiceSubCategoryList'));
+        $aServiceCategory = ServiceCategory::all();
+        $aServiceSubCategory = ServiceSubCategory::with('serviceCategory')->get();
+        return view('admin::templates.service_sub_category.service-sub-category',compact('aServiceCategory',
+            'aServiceSubCategory'));
     }
 
     /*Start::service sub-category insert*/
@@ -23,8 +23,8 @@ class ServiceSubCategoryController extends Controller
     {
         $aRules = array(
             'fk_id_service_category' => 'required',
-            'name' => 'required|unique:aii_service_sub_categories',
-            'slug' => 'required|unique:aii_service_sub_categories',
+            'name' => 'required|unique:aii_service_sub_category',
+            'slug' => 'required|unique:aii_service_sub_category',
 
         );
 
@@ -53,10 +53,10 @@ class ServiceSubCategoryController extends Controller
     /*Start:: get service sub-category edit*/
     public function GetServiceSubCategory(ServiceSubCategory $id)
     {
-        $aServiceCategoryList = ServiceCategory::all();
-        $aServiceSubCategoryList = ServiceSubCategory::with('serviceCategory')->get();
+        $aServiceCategory = ServiceCategory::all();
+        $aServiceSubCategory = ServiceSubCategory::with('serviceCategory')->get();
         return view('admin::templates.service_sub_category.service-sub-category', compact('id',
-            'aServiceSubCategoryList','aServiceCategoryList'));
+            'aServiceSubCategory','aServiceCategory'));
     }
     /*End::service sub-category edit*/
 

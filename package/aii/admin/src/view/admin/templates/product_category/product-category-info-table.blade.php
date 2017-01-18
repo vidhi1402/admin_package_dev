@@ -20,7 +20,7 @@
                         </tr>
                         </thead>
                         <tbody id="OurTeamUItable">
-                        @foreach($aProductCategoryList as $oCategory)
+                        @foreach($aProductCategory as $oCategory)
                             <tr>
                                 <td>{{ $oCategory->name }}</td>
                                 <td>{{ $oCategory->slug }}</td>

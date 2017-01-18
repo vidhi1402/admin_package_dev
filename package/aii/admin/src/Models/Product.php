@@ -1,6 +1,6 @@
 <?php
 
-namespace Aii\Admin\Models;
+namespace  Aii\Admin\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,7 +9,7 @@ class Product extends Model
     protected $fillable= [ 'name' ,'slug','sort_description','brief_description','download_link','brochure_link','product_desc_url'];
     protected $hidden = ['created_at','updated_at','status'];
     protected $primaryKey = 'id_product';
-    protected $table = 'aii_products_master';
+    protected $table = 'aii_product_master';
 
     public function category()
     {

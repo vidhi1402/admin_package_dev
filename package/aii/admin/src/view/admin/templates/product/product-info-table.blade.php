@@ -22,7 +22,7 @@
                         </tr>
                         </thead>
                         <tbody id="OurTeamUItable">
-                        @foreach($aProductList as $oProduct)
+                        @foreach($aProduct as $oProduct)
                             <tr>
                                 <td>{{ $oProduct->name }}</td>
                                 <td>{{ $oProduct->slug }}</td>

@@ -2,7 +2,7 @@
     <div class="col-sm-12">
         <section class="panel">
             <header class="panel-heading">
-              Service Category list
+              Testimonial list
              <span class="tools pull-right">
                 <a href="javascript:;" class="fa fa-chevron-down"></a>
                 <a href="javascript:;" class="fa fa-times"></a>
@@ -10,29 +10,36 @@
             </header>
             <div class="panel-body">
                 <div class="adv-table">
-                    <table class="display table table-bordered table-striped" id="service_category_info_table">
+                    <table class="display table table-bordered table-striped" id="testimonial_info_table">
                         <thead>
                         <tr>
-                            <th>Service Category Name </th>
-                            <th>Slug</th>
+                            <th>Image </th>
+                            <th>Name </th>
+                            <th>Organization</th>
+                            <th>designation</th>
+                            <th>index </th>
                             <th>Status </th>
                             <th>Action </th>
                         </tr>
                         </thead>
                         <tbody id="OurTeamUItable">
-                        @foreach($aServiceCategory as $oCategory)
+                        @foreach($aTestimonial as $oTestimonial)
                             <tr>
-                                <td>{{ $oCategory->name }}</td>
-                                <td>{{ $oCategory->slug }}</td>
+                                <td><img height="50" width="50" src="{{config('constants.TESTIMONIAL_IMAGE').$oTestimonial->picture}}"
+                                         alt="{{$oTestimonial->picture }}"></td>
+                                <td>{{ $oTestimonial->name }}</td>
+                                <td>{{ $oTestimonial->organization }}</td>
+                                <td>{{ $oTestimonial->designation }}</td>
+                                <td>{{ $oTestimonial->display_index }}</td>
                                 <td>
-                                    @if($oCategory->status  == 1)
-                                     <button id="active" class="badge btn-success" onclick="changeStatus(this,'{{$oCategory->id_service_category}}');" value="1">Active</button>
+                                    @if($oTestimonial->status  == 1)
+                                     <button id="active" class="badge btn-success" onclick="changeStatus(this,'{{$oTestimonial->id_testimonial}}');" value="1">Active</button>
                                      @else
-                                        <button id="deactive" class="badge btn-danger" onclick="changeStatus(this,'{{$oCategory->id_service_category}}');"  value="0">Deactive</button>
+                                        <button id="deactive" class="badge btn-danger" onclick="changeStatus(this,'{{$oTestimonial->id_testimonial}}');"  value="0">Deactive</button>
                                     @endif
                                 </td>
-                                 <td> <a href="{{ route('admin.service_category.edit',array( 'id' => $oCategory->id_service_category)) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
-                                      <a href="{{ route('admin.service_category.delete',array( 'id' => $oCategory->id_service_category)) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></a>
+                                 <td> <a href="{{ route('admin.testimonial.edit',array( 'id' => $oTestimonial->id_testimonial)) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                                      <a href="{{ route('admin.testimonial.delete',array( 'id' => $oTestimonial->id_testimonial)) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></a>
                                 </td>
                             </tr>
                         @endforeach

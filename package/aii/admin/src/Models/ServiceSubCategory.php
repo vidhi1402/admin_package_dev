@@ -1,6 +1,6 @@
 <?php
 
-namespace Aii\Admin\Models;
+namespace  Aii\Admin\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,7 +9,7 @@ class ServiceSubCategory extends Model
     protected $fillable= ['fk_id_service_category', 'slug' ,'name'];
     protected $hidden = ['created_at','updated_at','status'];
     protected $primaryKey = 'id_service_sub_category';
-    protected $table = 'aii_service_sub_categories';
+    protected $table = 'aii_service_sub_category';
 
     public function serviceCategory()
     {

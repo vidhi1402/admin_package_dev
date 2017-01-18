@@ -12,7 +12,7 @@
                     <select class="form-control has-feedback-left" id="service_category" placeholder="service  category Name"
                            name="fk_id_service_category">
                         <option value="" @if("" == old('service_category')) {{'selected'}} @endif>--select service category</option>
-                         @foreach( $aServiceCategoryList as $oServiceCategory)
+                         @foreach( $aServiceCategory as $oServiceCategory)
                             <option value="{{ $oServiceCategory->id_service_category }}"
                             @if($oServiceCategory->id_service_category == old('service_category')) {{'selected'}} @endif>{{ $oServiceCategory->name }}</option>
                         @endforeach

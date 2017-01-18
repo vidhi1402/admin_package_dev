@@ -21,7 +21,7 @@
                         </tr>
                         </thead>
                         <tbody id="OurTeamUItable">
-                        @foreach($aProductSubCategoryList as $oSubCategory)
+                        @foreach($aProductSubCategory as $oSubCategory)
                             <tr>
                                 <td>{{ $oSubCategory->name }}</td>
                                 <td>{{ $oSubCategory->slug }}</td>

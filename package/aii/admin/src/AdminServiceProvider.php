@@ -46,6 +46,8 @@ class AdminServiceProvider extends ServiceProvider
         $this->app->make('Aii\Admin\ServiceCategoryController');
         $this->app->make('Aii\Admin\ServiceController');
         $this->app->make('Aii\Admin\ServiceSubCategoryController');
+        $this->app->make('Aii\Admin\TestimonialController');
+        $this->app->make('Aii\Admin\TeamMemberController');
         /*end::register controller*/
 
         /*view pages*/

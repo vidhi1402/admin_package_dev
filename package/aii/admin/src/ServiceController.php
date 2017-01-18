@@ -16,9 +16,9 @@ class ServiceController extends Controller
 {
     public function Index()
     {
-        $aServiceList = Service::with('category.serviceCategory')->with('subCategory.serviceSubCategory')->get();
-        $aCategoryList = ServiceCategory::with('serviceSubCategory')->where('status', 1)->get();
-        return view('admin::templates.service.service', compact('aCategoryList', 'aServiceList'));
+        $aService = Service::with('category.serviceCategory')->with('subCategory.serviceSubCategory')->get();
+        $aCategory = ServiceCategory::with('serviceSubCategory')->where('status', 1)->get();
+        return view('admin::templates.service.service', compact('aCategory', 'aService'));
     }
 
     /*START::Get sub category service*/
@@ -39,7 +39,7 @@ class ServiceController extends Controller
     {
         $aRules = array(
             'service_name' => 'required',
-            'slug' => 'required|unique:aii_services_master',
+            'slug' => 'required|unique:aii_service_master',
             'icon' => 'required',
             'sort_description' => 'required',
             'fk_id_service_category' => 'required',
@@ -69,7 +69,7 @@ class ServiceController extends Controller
                     $oImage->save();
                 }
             }
-            if ($oServiceObj) {
+            if ($oResponse) {
                 session()->flash('msg', 'service Added');
             } else {
                 session()->flash('msg', 'service Not Added');
@@ -110,24 +110,24 @@ class ServiceController extends Controller
     /*Start:: Get service Edit*/
     public function GetService(Service $id)
     {
-        $aServiceCategoryList = ServiceCategory::all();
-        $aServiceSubCategoryList = ServiceSubCategory::all();
-        $aServiceCategory = ServiceAssignCategory::where('fk_id_service', $id->id_service)->get();
-        $aServiceSubCategory = ServiceAssignSubCategory::where('fk_id_service', $id->id_service)->get();
+        $aServiceCategory = ServiceCategory::all();
+        $aServiceSubCategory = ServiceSubCategory::all();
+        $aServiceCat = ServiceAssignCategory::where('fk_id_service', $id->id_service)->get();
+        $aServiceSubCat = ServiceAssignSubCategory::where('fk_id_service', $id->id_service)->get();
 
         $aCategory = array();
-        foreach ($aServiceCategory as $oCatagory) {
+        foreach ($aServiceCat as $oCatagory) {
             $aCategory[] = $oCatagory->fk_id_service_category;
         };
 
         $aSubCategory = array();
-        foreach ($aServiceSubCategory as $oCatagory) {
+        foreach ($aServiceSubCat as $oCatagory) {
             $aSubCategory[] = $oCatagory->fk_id_sub_category;
         };
 
-        $aServiceList = Service::with('category.serviceCategory')->with('subCategory.serviceSubCategory')->get();
-        return view('admin::templates.service.service', compact('id', 'aServiceList', 'aServiceCategoryList',
-            'aServiceSubCategory', 'aCategory', 'aSubCategory', 'aServiceSubCategoryList'));
+        $aService = Service::with('category.serviceCategory')->with('subCategory.serviceSubCategory')->get();
+        return view('admin::templates.service.service', compact('id', 'aService', 'aServiceCategory',
+            'aServiceSubCategory', 'aCategory', 'aSubCategory', 'aServiceSubCategory'));
     }
     /*End:: Get service Edit*/
 
@@ -266,10 +266,10 @@ class ServiceController extends Controller
     /*START::Get Image service*/
     public function GetServiceImage(Request $oRequest)
     {
-        $aService = ServiceImage::where('fk_id_service', $oRequest->id)->get();
-        $html = view('admin::templates.service.service-modal-data', compact('aService'))->render();
+        $aServiceImage = ServiceImage::where('fk_id_service', $oRequest->id)->get();
+        $html = view('admin::templates.service.service-modal-data', compact('aServiceImage'))->render();
         if ($html) {
-            return response()->json(['status' => 1, 'html' => $html,'data' =>$aService, 'req_data' => $oRequest->all()]);
+            return response()->json(['status' => 1, 'html' => $html,'data' =>$aServiceImage, 'req_data' => $oRequest->all()]);
         } else {
             return response()->json(['status' => 0]);
         }
@@ -281,9 +281,9 @@ class ServiceController extends Controller
             'status' => $oRequest->status,
         ]);
         $oImage = ServiceImage::find( $oRequest->id);
-        $aService = ServiceImage::where('fk_id_service',$oImage->fk_id_service)->get();
+        $aServiceImage = ServiceImage::where('fk_id_service',$oImage->fk_id_service)->get();
 
-        $html = view('admin::templates.service.service-modal-data', compact('aService'))->render();
+        $html = view('admin::templates.service.service-modal-data', compact('aServiceImage'))->render();
         if($oResponse) {
             session()->flash('msg','Status Changed');
             return response()->json(array('data' => $oResponse,'id_service'=> $oImage->fk_id_service , 'status' => 1, 'html'=> $html));
@@ -297,8 +297,8 @@ class ServiceController extends Controller
     public function DeleteServiceImage(Request $oRequest)
     {
         $oImage = ServiceImage::find($oRequest->id);
-        $aService = ServiceImage::where('fk_id_service', $oImage->fk_id_service)->get();
-        $html = view('admin::templates.service.service-modal-data', compact('aService'))->render();
+        $aServiceImage = ServiceImage::where('fk_id_service', $oImage->fk_id_service)->get();
+        $html = view('admin::templates.service.service-modal-data', compact('aServiceImage'))->render();
         $result = $this-> __deleteImageFolder(public_path().config('constants.SERVICE_IMAGE_PATH').$oImage->name);
 
         if($result['status'] == 1) {

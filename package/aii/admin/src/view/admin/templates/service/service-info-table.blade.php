@@ -22,7 +22,7 @@
                         </tr>
                         </thead>
                         <tbody id="OurTeamUItable">
-                        @foreach($aServiceList as $oService)
+                        @foreach($aService as $oService)
                             <tr>
                                 <td>{{ $oService->name }}</td>
                                 <td>{{ $oService->slug }}</td>
@@ -71,7 +71,7 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title">Service Image</h4>
                         </div>
-                        <div class="panel-body" id="image_Detail">
+                        <div class="panel-body" id="image-Details">
                         </div>
                     </div>
                 </div>

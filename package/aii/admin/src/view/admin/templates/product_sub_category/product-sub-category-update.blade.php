@@ -1,5 +1,5 @@
 <header class="panel-heading">
-   Product Category Update
+   Product Sub Category Update
 </header>
 <div class="panel-body">
     <div class="row">
@@ -11,7 +11,7 @@
 
                     <select class="form-control has-feedback-left" id="product_category" placeholder="product  category Name"
                             name="fk_id_product_category" value="{{ old('product_category') }}">
-                        @foreach( $aProductCategoryList as $oProductCategory)
+                        @foreach( $aProductCategory as $oProductCategory)
                             <option value="{{ $oProductCategory->id_product_category }}"
                                     @if($oProductCategory->id_product_category == $id->fk_id_product_category ){{ 'selected' }} @endif>{{ $oProductCategory->name }}</option>
                         @endforeach

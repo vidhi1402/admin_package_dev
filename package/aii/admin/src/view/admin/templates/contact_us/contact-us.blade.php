@@ -10,24 +10,15 @@
     <div class="row">
         <div class="col-lg-12">
             <section class="panel">
-                {{--<header class="panel-heading">
-                    Project
-                </header>
-                <div class="panel-body">
-                   <div class="row"> --}}
                 @if(Request::route()->getName() == 'admin.contact_us.index')
                     @include('admin::templates.contact_us.contact-us-info-table')
-                  {{--  @include('admin::templates.product.product-content')--}}
                 @else
-                    {{--@include('admin::templates.product.product-update')--}}
                 @endif
-                {{--</div>
-            </div>--}}
+
             </section>
         </div>
     </div>
 
-    {{--@include('admin::templates.product.product-info-table')--}}
 @endsection
 
 @section('scripts')

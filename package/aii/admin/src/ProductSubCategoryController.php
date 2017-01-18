@@ -12,10 +12,10 @@ class ProductSubCategoryController extends Controller
 {
     public function Index(){
 
-        $aProductCategoryList = ProductCategory::all();
-        $aProductSubCategoryList = ProductSubCategory::with('productCategory')->get();
-        return view('admin::templates.product_sub_category.product-sub-category',compact('aProductCategoryList',
-            'aProductSubCategoryList'));
+        $aProductCategory = ProductCategory::all();
+        $aProductSubCategory = ProductSubCategory::with('productCategory')->get();
+        return view('admin::templates.product_sub_category.product-sub-category',compact('aProductCategory',
+            'aProductSubCategory'));
     }
 
     /*Start::product sub-category insert*/
@@ -23,8 +23,8 @@ class ProductSubCategoryController extends Controller
     {
         $aRules = array(
             'fk_id_product_category' => 'required',
-            'name' => 'required|unique:aii_product_sub_categories',
-            'slug' => 'required|unique:aii_product_sub_categories',
+            'name' => 'required|unique:aii_product_sub_category',
+            'slug' => 'required|unique:aii_product_sub_category',
 
         );
 
@@ -53,10 +53,10 @@ class ProductSubCategoryController extends Controller
     /*Start:: get product sub-category edit*/
     public function GetProductSubCategory(ProductSubCategory $id)
     {
-        $aProductCategoryList = ProductCategory::all();
-        $aProductSubCategoryList = ProductSubCategory::with('productCategory')->get();
-        return view('admin::templates.product_sub_category.product-sub-category', compact('id',
-            'aProductSubCategoryList','aProductCategoryList'));
+        $aProductCategory = ProductCategory::all();
+        $aProductSubCategory = ProductSubCategory::with('productCategory')->get();
+        return view('admin::Ftemplates.product_sub_category.product-sub-category', compact('id',
+            'aProductSubCategory','aProductCategory'));
     }
     /*End::product sub-category edit*/
 

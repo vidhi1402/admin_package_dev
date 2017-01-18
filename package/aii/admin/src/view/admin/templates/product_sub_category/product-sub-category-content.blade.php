@@ -1,5 +1,5 @@
 <header class="panel-heading">
-    Product Category Add
+    Product Sub Category Add
 </header>
 <div class="panel-body">
     <div class="row">
@@ -12,7 +12,7 @@
                     <select class="form-control has-feedback-left" id="product_category" placeholder="product  category Name"
                            name="fk_id_product_category">
                         <option value="" @if("" == old('product_category')) {{'selected'}} @endif>--select product category</option>
-                         @foreach( $aProductCategoryList as $oProductCategory)
+                         @foreach( $aProductCategory as $oProductCategory)
                             <option value="{{ $oProductCategory->id_product_category }}"
                             @if($oProductCategory->id_product_category == old('product_category')) {{'selected'}} @endif>{{ $oProductCategory->name }}</option>
                         @endforeach

@@ -46,7 +46,7 @@
     <div class="panel-body">
         <div class="modal fade modal-dialog-center" id="modal_contact_message" tabindex="-1" role="dialog"
              aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content-wrap">
                     <div class="modal-content">
                         <div class="modal-header">

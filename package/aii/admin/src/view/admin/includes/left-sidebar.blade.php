@@ -13,12 +13,14 @@
         <li class="sub-menu">
 
             <a @if( Request::route()->getName() == 'admin.product.index'
-                  ||  Request::route()->getName() == 'admin.product_category.index'
-                      ||  Request::route()->getName() == 'admin.product_sub_category.index'
-                   ||  Request::route()->getName() == 'admin.service.index'
-                    ||  Request::route()->getName() == 'admin.service_category.index'
-                    ||  Request::route()->getName() == 'admin.service_sub_category.index'
-                    ||  Request::route()->getName() == 'admin.contact_us.index'
+                 ||  Request::route()->getName() == 'admin.product_category.index'
+                  ||  Request::route()->getName() == 'admin.product_sub_category.index'
+                  ||  Request::route()->getName() == 'admin.service.index'
+                  ||  Request::route()->getName() == 'admin.service_category.index'
+                  ||  Request::route()->getName() == 'admin.service_sub_category.index'
+                  ||  Request::route()->getName() == 'admin.testimonial.index'
+                  ||  Request::route()->getName() == 'admin.team_member.index'
+                  ||  Request::route()->getName() == 'admin.contact_us.index'
                    )
                class="active" @endif href="javascript:;">
                 <i class="fa fa-user"></i>
@@ -37,6 +39,10 @@
                             href="{{route('admin.service_category.index')}}">Service Category</a></li>
                 <li @if(Request::route()->getName() == 'admin.service_sub_category.index') class="active" @endif><a
                             href="{{route('admin.service_sub_category.index')}}">Service Sub-Category</a></li>
+                <li @if(Request::route()->getName() == 'admin.testimonial.index') class="active" @endif><a
+                            href="{{route('admin.testimonial.index')}}">Testimonial</a></li>
+                <li @if(Request::route()->getName() == 'admin.team_member.index') class="active" @endif><a
+                            href="{{route('admin.team_member.index')}}">Team Member</a></li>
                 <li @if(Request::route()->getName() == 'admin.contact_us.index') class="active" @endif><a
                             href="{{route('admin.contact_us.index')}}">Contact Us</a></li>
             </ul>

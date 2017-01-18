@@ -1,6 +1,6 @@
 <?php
 
-namespace Aii\Admin;;
+namespace Aii\Admin;
 
 use Aii\Admin\Models\ContactUs;
 use Illuminate\Http\Request;
@@ -17,7 +17,7 @@ class ContactUsController extends Controller
     public function GetMessageContact(Request $oRequest)
     {
         $oContact = ContactUs::where('id_contact', $oRequest->id)->first();
-        $html = view('admin::templates.contact_us.contact-us-modal-data', compact('oContact'))->render();
+        $html = view('admin.templates.contact_us.contact-us-modal-data', compact('oContact'))->render();
         if ($html) {
             return response()->json(['status' => 1, 'html' => $html,'data' =>$oContact, 'req_data' => $oRequest->all()]);
         } else {

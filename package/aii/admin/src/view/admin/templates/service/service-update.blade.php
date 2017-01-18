@@ -54,7 +54,7 @@
                 <div class="form-group">
                     <label class="sr-input" for="exampleInputPassword2">Category:</label> <br>
                     <select multiple="multiple" class="multi-select" id="fk_id_service_category" name="fk_id_service_category[]">
-                        @foreach( $aServiceCategoryList as $oCategory )
+                        @foreach( $aServiceCategory as $oCategory )
                             @if( in_array($oCategory->id_service_category ,(array)($aCategory)))
                                 <option   value="{{ $oCategory->id_service_category }}" {{ "selected"}} >
                                     {{ $oCategory->name }}</option>
@@ -69,7 +69,7 @@
                 <div class="form-group">
                     <label class="sr-input" for="exampleInputPassword2">Sub Category:</label> <br>
                     <select multiple="multiple" class="multi-select" id="fk_id_sub_service_category" name="fk_id_sub_service_category[]">
-                        @foreach( $aServiceSubCategoryList as $oSubCategory )
+                        @foreach( $aServiceSubCategory as $oSubCategory )
                             @if( in_array($oSubCategory->id_service_sub_category ,(array)($aSubCategory)))
                                 <option  value="{{ $oSubCategory->id_service_sub_category }}" {{ "selected"}} >
                                     {{ $oSubCategory->name }}</option>

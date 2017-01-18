@@ -58,7 +58,7 @@
                 success: function (data) {
                     if (data.status == 1) {
                         console.log(JSON.stringify(data));
-                        /* $('#image_Detail').html('');*/
+                        /* $('#image-Details').html('');*/
                         setSubCategory(data.data);
                     } else {
                         alert('server not available');
@@ -134,7 +134,7 @@
 
                     if (data.status == 1) {
                         $('#modal_service_image').modal('show');
-                        $('#image_Detail').html(data.html);
+                        $('#image-Details').html(data.html);
                     }
                     else {
                         console.log("error");
@@ -165,7 +165,7 @@
                     success: function (data) {
                         if (data.status == 1) {
                             console.log(JSON.stringify(data, null, 4));
-                            $('#image_Detail').html('');
+                            $('#image-Details').html('');
                             viewDetails(data.id_service);
                         } else {
                             alert('server unavailable');
@@ -191,7 +191,7 @@
                     success: function (data) {
                         if (data.status == 1) {
                             console.log(JSON.stringify(data));
-                            $('#image_Detail').html('');
+                            $('#image-Details').html('');
                             viewDetails(data.id_service);
                         } else {
                             alert('server not available');

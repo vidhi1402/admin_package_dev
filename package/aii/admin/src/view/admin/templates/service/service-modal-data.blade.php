@@ -1,5 +1,5 @@
 <div class="row">
-    @foreach($aService as $oImage)
+    @foreach($aServiceImage as $oImage)
         <div class="col-md-4">
             <figure>
                 <img height="250" width="250" src="{{config('constants.SERVICE_IMAGE_PATH').$oImage->name}}"

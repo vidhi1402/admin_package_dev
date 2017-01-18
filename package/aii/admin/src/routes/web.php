@@ -76,4 +76,22 @@ Route::group(['prefix' => '/admin/' ,'middleware' => 'web'], function () {
     Route::post('/product-sub-category/update', ['as' => 'admin.product_sub_category.update', 'uses' => 'Aii\Admin\ProductSubCategoryController@Update']);
     Route::post('/product-sub-category/update-status', ['as' => 'admin.product_sub_category.change_status', 'uses' => 'Aii\Admin\ProductSubCategoryController@UpdateStatus']);
     /*End::product-sub-category route*/
+
+    /*Start::team member route*/
+    Route::get('/team-member', ['as' => 'admin.team_member.index', 'uses' => 'Aii\Admin\TeamMemberController@Index']);
+    Route::post('/team-member/insert', ['as' => 'admin.team_member.insert', 'uses' => 'Aii\Admin\TeamMemberController@Insert']);
+    Route::get('/team-member/{id}/edit', ['as' => 'admin.team_member.edit', 'uses' => 'Aii\Admin\TeamMemberController@GetTeamMember']);
+    Route::get('/team-member/{id}/delete', ['as' => 'admin.team_member.delete', 'uses' => 'Aii\Admin\TeamMemberController@Delete']);
+    Route::post('/team-member/update', ['as' => 'admin.team_member.update', 'uses' => 'Aii\Admin\TeamMemberController@Update']);
+    Route::post('/team-member/update-status', ['as' => 'admin.team_member.change_status', 'uses' => 'Aii\Admin\TeamMemberController@UpdateStatus']);
+    /*End::team member route*/
+
+    /*Start::testimonial route*/
+    Route::get('/testimonial', ['as' => 'admin.testimonial.index', 'uses' => 'Aii\Admin\TestimonialController@Index']);
+    Route::post('/testimonial/insert', ['as' => 'admin.testimonial.insert', 'uses' => 'Aii\Admin\TestimonialController@Insert']);
+    Route::get('/testimonial/{id}/edit', ['as' => 'admin.testimonial.edit', 'uses' => 'Aii\Admin\TestimonialController@GetTestimonial']);
+    Route::get('/testimonial/{id}/delete', ['as' => 'admin.testimonial.delete', 'uses' => 'Aii\Admin\TestimonialController@Delete']);
+    Route::post('/testimonial/update', ['as' => 'admin.testimonial.update', 'uses' => 'Aii\Admin\TestimonialController@Update']);
+    Route::post('/testimonial/update-status', ['as' => 'admin.testimonial.change_status', 'uses' => 'Aii\Admin\TestimonialController@UpdateStatus']);
+    /*End::testimonial route*/
 });

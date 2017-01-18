@@ -10,16 +10,16 @@ class ProductCategoryController extends Controller
 {
     public function Index(){
 
-        $aProductCategoryList = ProductCategory::all();
-        return view('admin::templates.product_category.product-category',compact('aProductCategoryList'));
+        $aProductCategory = ProductCategory::all();
+        return view('admin::templates.product_category.product-category',compact('aProductCategory'));
     }
 
     /*Start::product category insert*/
     public function Insert(Request $oRequest)
     {
         $aRules = array(
-            'name' => 'required|unique:aii_product_categories_master',
-            'slug' => 'required|unique:aii_product_categories_master',
+            'name' => 'required|unique:aii_product_category_master',
+            'slug' => 'required|unique:aii_product_category_master',
 
         );
 
@@ -47,8 +47,8 @@ class ProductCategoryController extends Controller
     /*Start:: Get product category*/
     public function GetProductCategory(ProductCategory $id)
     {
-        $aProductCategoryList = ProductCategory::all();
-        return view('admin::templates.product_category.product-category', compact('id', 'aProductCategoryList'));
+        $aProductCategory = ProductCategory::all();
+        return view('admin::templates.product_category.product-category', compact('id', 'aProductCategory'));
     }
     /*End:: Get product category*/
 
@@ -89,7 +89,7 @@ class ProductCategoryController extends Controller
             session()->flash('msg', 'Product Category Not Deleted');
         }
         return redirect()->route('admin.product_category.index');
-}
+    }
     /*End:: Delete product-category*/
 
     /*Start::Update status product-category*/
