@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableAiiServiceSubCategories extends Migration
+class CreateTableAiiServiceSubCategory extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateTableAiiServiceSubCategories extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('aii_service_sub_categories')) {
-            Schema::create('aii_service_sub_categories', function (Blueprint $table) {
+        if (!Schema::hasTable('aii_service_sub_category')) {
+            Schema::create('aii_service_sub_category', function (Blueprint $table) {
                 $table->increments('id_service_sub_category');
                 $table->integer('fk_id_service_category')->unsigned();
                 $table->string('slug',50);
@@ -24,7 +24,7 @@ class CreateTableAiiServiceSubCategories extends Migration
 
                 $table->foreign('fk_id_service_category')
                     ->references('id_service_category')
-                    ->on('aii_service_categories_master')
+                    ->on('aii_service_category_master')
                     ->onDelete('cascade');
             });
         }
@@ -37,6 +37,6 @@ class CreateTableAiiServiceSubCategories extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('aii_service_sub_categories');
+        Schema::dropIfExists('aii_service_sub_category');
     }
 }
