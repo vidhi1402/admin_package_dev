@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableAiiProductAssignSubCategories extends Migration
+class CreateTableAiiProductAssignSubCategory extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateTableAiiProductAssignSubCategories extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('aii_product_assign_sub_categories')) {
-            Schema::create('aii_product_assign_sub_categories', function (Blueprint $table) {
+        if (!Schema::hasTable('aii_product_assign_sub_category')) {
+            Schema::create('aii_product_assign_sub_category', function (Blueprint $table) {
                 $table->increments('id_product_assign_sub_category');
                 $table->integer('fk_id_product')->unsigned();
                 $table->integer('fk_id_product_category')->unsigned();
@@ -23,17 +23,17 @@ class CreateTableAiiProductAssignSubCategories extends Migration
 
                 $table->foreign('fk_id_product')
                     ->references('id_product')
-                    ->on('aii_products_master')
+                    ->on('aii_product_master')
                     ->onDelete('cascade');
 
                  $table->foreign('fk_id_product_category')
                      ->references('id_product_category')
-                     ->on('aii_product_categories_master')
+                     ->on('aii_product_category_master')
                      ->onDelete('cascade');
 
                 $table->foreign('fk_id_sub_category')
                     ->references('id_product_sub_category')
-                    ->on('aii_product_sub_categories')
+                    ->on('aii_product_sub_category')
                     ->onDelete('cascade');
             });
         }
@@ -46,6 +46,6 @@ class CreateTableAiiProductAssignSubCategories extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('aii_product_assign_sub_categories');
+        Schema::dropIfExists('aii_product_assign_sub_category');
     }
 }

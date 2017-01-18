@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableAiiProductImages extends Migration
+class CreateTableAiiProductImage extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateTableAiiProductImages extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('aii_product_images')) {
-            Schema::create('aii_product_images', function (Blueprint $table) {
+        if (!Schema::hasTable('aii_product_image')) {
+            Schema::create('aii_product_image', function (Blueprint $table) {
                 $table->increments('id_product_image');
                 $table->integer('fk_id_product')->unsigned();
                 $table->string('product_slug',50);
@@ -24,7 +24,7 @@ class CreateTableAiiProductImages extends Migration
 
                 $table->foreign('fk_id_product')
                     ->references('id_product')
-                    ->on('aii_products_master')
+                    ->on('aii_product_master')
                     ->onDelete('cascade');
             });
         }
@@ -37,6 +37,6 @@ class CreateTableAiiProductImages extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('aii_product_images');
+        Schema::dropIfExists('aii_product_image');
     }
 }

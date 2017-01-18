@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableAiiServiceImages extends Migration
+class CreateTableAiiServiceImage extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateTableAiiServiceImages extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('aii_service_images')) {
-            Schema::create('aii_service_images', function (Blueprint $table) {
+        if (!Schema::hasTable('aii_service_image')) {
+            Schema::create('aii_service_image', function (Blueprint $table) {
                 $table->increments('id_service_image');
                 $table->integer('fk_id_service')->unsigned();
                 $table->string('service_slug',50);
@@ -24,7 +24,7 @@ class CreateTableAiiServiceImages extends Migration
 
                 $table->foreign('fk_id_service')
                     ->references('id_service')
-                    ->on('aii_services_master')
+                    ->on('aii_service_master')
                     ->onDelete('cascade');
             });
         }
@@ -37,6 +37,6 @@ class CreateTableAiiServiceImages extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('aii_service_images');
+        Schema::dropIfExists('aii_service_image');
     }
 }

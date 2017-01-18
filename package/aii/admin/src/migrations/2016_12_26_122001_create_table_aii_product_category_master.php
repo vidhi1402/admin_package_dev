@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableAiiProductCategoriesMaster extends Migration
+class CreateTableAiiProductCategoryMaster extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateTableAiiProductCategoriesMaster extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('aii_product_categories_master')) {
-            Schema::create('aii_product_categories_master', function (Blueprint $table) {
+        if (!Schema::hasTable('aii_product_category_master')) {
+            Schema::create('aii_product_category_master', function (Blueprint $table) {
                 $table->increments('id_product_category');
                 $table->string('slug',50);
                 $table->string('name',50);
@@ -31,6 +31,6 @@ class CreateTableAiiProductCategoriesMaster extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('aii_product_categories_master');
+        Schema::dropIfExists('aii_product_category_master');
     }
 }

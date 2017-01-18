@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableAiiProductAssignCategories extends Migration
+class CreateTableAiiProductAssignCategory extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateTableAiiProductAssignCategories extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('aii_product_assign_categories')) {
-            Schema::create('aii_product_assign_categories', function (Blueprint $table) {
+        if (!Schema::hasTable('aii_product_assign_category')) {
+            Schema::create('aii_product_assign_category', function (Blueprint $table) {
                 $table->increments('id_product_assign_category');
                 $table->integer('fk_id_product')->unsigned();
                 $table->integer('fk_id_product_category')->unsigned();
@@ -22,12 +22,12 @@ class CreateTableAiiProductAssignCategories extends Migration
 
                 $table->foreign('fk_id_product')
                     ->references('id_product')
-                    ->on('aii_products_master')
+                    ->on('aii_product_master')
                     ->onDelete('cascade');
 
                 $table->foreign('fk_id_product_category')
                     ->references('id_product_category')
-                    ->on('aii_product_categories_master')
+                    ->on('aii_product_category_master')
                     ->onDelete('cascade');
             });
         }
@@ -40,6 +40,6 @@ class CreateTableAiiProductAssignCategories extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('aii_product_assign_categories');
+        Schema::dropIfExists('aii_product_assign_category');
     }
 }
