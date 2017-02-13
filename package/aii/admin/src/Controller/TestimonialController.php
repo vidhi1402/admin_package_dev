@@ -1,13 +1,13 @@
 <?php
 
-namespace Aii\Admin;
+namespace Aii\Admin\Controller;
 
 use App\Http\Controllers\Controller;
 use Aii\Admin\Models\Testimonial;
 use Illuminate\Http\Request;
 use Validator;
 
-class TestimonialController extends Controller
+class TestimonialController extends AdminController
 {
     public function Index()
     {

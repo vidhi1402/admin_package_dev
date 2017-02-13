@@ -1,12 +1,12 @@
 <?php
 
-namespace Aii\Admin;
+namespace Aii\Admin\Controller;
 
 use Aii\Admin\Models\ContactUs;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ContactUsController extends Controller
+class ContactUsController extends AdminController
 {
     public function Index(){
         $aContact = ContactUs::all();

@@ -1,13 +1,13 @@
 <?php
 
-namespace Aii\Admin;
+namespace Aii\Admin\Controller;
 
 use App\Http\Controllers\Controller;
 use Aii\Admin\Models\TeamMember;
 use Illuminate\Http\Request;
 use Validator;
 
-class TeamMemberController extends Controller
+class TeamMemberController extends AdminController
 {
     public function Index()
     {

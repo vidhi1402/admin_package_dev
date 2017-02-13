@@ -47,6 +47,26 @@
                             href="{{route('admin.contact_us.index')}}">Contact Us</a></li>
             </ul>
         </li>
+        <li class="sub-menu">
+            <a @if( Request::route()->getName() == 'admin.gallery-category.index'
+                 ||  Request::route()->getName() == 'admin.gallery_sub_ategory.index'
+                   )
+               class="active" @endif href="javascript:;">
+                <i class="fa fa-user"></i>
+                <span>Gallery</span>
+            </a>
+            <ul class="sub">
+                <li @if(Request::route()->getName() == 'admin.gallery-category.index') class="active" @endif><a
+                            href="{{route('admin.gallery.index')}}">Gallery</a></li>
+
+                <li @if(Request::route()->getName() == 'admin.gallery-category.index') class="active" @endif><a
+                            href="{{route('admin.gallery-category.index')}}">Gallery Category</a></li>
+
+                <li @if(Request::route()->getName() == 'admin.gallery_sub_ategory.index') class="active" @endif><a
+                            href="{{route('admin.gallery_sub_ategory.index')}}">Gallery Sub Category</a></li>
+
+            </ul>
+        </li>
 
     </ul>
     <!-- sidebar menu end-->

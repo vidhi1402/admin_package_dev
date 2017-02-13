@@ -1,13 +1,13 @@
 <?php
 
-namespace Aii\Admin;
+namespace Aii\Admin\Controller;
 
 use Aii\Admin\Models\ServiceCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Validator;
 
-class ServiceCategoryController extends Controller
+class ServiceCategoryController extends AdminController
 {
     public function Index(){
 

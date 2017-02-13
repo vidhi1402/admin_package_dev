@@ -38,16 +38,25 @@ class AdminServiceProvider extends ServiceProvider
      */
     public function register()
     {
+       /* $this->app->middleware([
+            Aii\Admin\Middleware\RedirectIfNotAdmin::class
+        ]);*/
         /*start::register controller*/
-        $this->app->make('Aii\Admin\ContactUsController');
-        $this->app->make('Aii\Admin\DashboardController');
-        $this->app->make('Aii\Admin\ProductCategoryController');
-        $this->app->make('Aii\Admin\ProductController');
-        $this->app->make('Aii\Admin\ServiceCategoryController');
-        $this->app->make('Aii\Admin\ServiceController');
-        $this->app->make('Aii\Admin\ServiceSubCategoryController');
-        $this->app->make('Aii\Admin\TestimonialController');
-        $this->app->make('Aii\Admin\TeamMemberController');
+        $this->app->make('Aii\Admin\Controller\AdminController');
+        $this->app->make('Aii\Admin\Controller\ContactUsController');
+        $this->app->make('Aii\Admin\Controller\DashboardController');
+        $this->app->make('Aii\Admin\Controller\ProductCategoryController');
+        $this->app->make('Aii\Admin\Controller\ProductController');
+        $this->app->make('Aii\Admin\Controller\ServiceCategoryController');
+        $this->app->make('Aii\Admin\Controller\ServiceController');
+        $this->app->make('Aii\Admin\Controller\ServiceSubCategoryController');
+        $this->app->make('Aii\Admin\Controller\TestimonialController');
+        $this->app->make('Aii\Admin\Controller\TeamMemberController');
+        $this->app->make('Aii\Admin\Controller\GalleryCategoryController');
+        $this->app->make('Aii\Admin\Controller\GallerySubCategoryController');
+
+        $this->app->make('Aii\Admin\Controller\Auth\LoginController');
+        $this->app->make('Aii\Admin\Controller\Auth\RegisterController');
         /*end::register controller*/
 
         /*view pages*/

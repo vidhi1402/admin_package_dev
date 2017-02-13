@@ -7,5 +7,6 @@ return [
     'TEMPLETE_IMAGE_PATH' => '/web/assets/custom/images/',
     'TESTIMONIAL_IMAGE' => '/Admin/asset/uploads/testimonial_image/',
     'TEAM_MEMBER_IMAGE' => '/Admin/asset/uploads/team_member_image/',
+    'GALLERY_IMAGE'     => '/Admin/asset/uploads/gallery/',
 
 ];

@@ -1,6 +1,6 @@
 <?php
 
-namespace Aii\Admin;
+namespace Aii\Admin\Controller;
 
 use App\Http\Controllers\Controller;
 use Aii\Admin\Models\Product;
@@ -12,7 +12,7 @@ use Aii\Admin\Models\ProductSubCategory;
 use Illuminate\Http\Request;
 use Validator;
 
-class ProductController extends Controller
+class ProductController extends AdminController
 {
     public function Index()
     {

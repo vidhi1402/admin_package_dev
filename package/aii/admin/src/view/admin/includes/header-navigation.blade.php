@@ -221,15 +221,26 @@
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                 <img alt="" src="asset/img/avatar1_small.jpg">
-                <span class="username">Jhon Doue</span>
+                <span class="username">{{Auth::guard('admin')->user()->name}}</span>
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">
                 <div class="log-arrow-up"></div>
-                <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
-                <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                <li><a href="#"><i class="fa fa-bell-o"></i> Notification</a></li>
-                <li><a href="#"><i class="fa fa-key"></i> Log Out</a></li>
+
+                @if(Auth::guard('admin')->user())
+                    <li> <a href="javascript:void(0)"
+                            onclick="event.preventDefault();
+                                     document.getElementById('logout-form-admin').submit();">
+                            Logout
+                        </a>
+
+                        <form id="logout-form-admin" action="{{ route('admin.auth.logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </li>
+                @endif
+
+
             </ul>
         </li>
         {{--<li class="sb-toggle-right">
